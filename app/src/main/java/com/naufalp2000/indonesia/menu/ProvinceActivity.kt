@@ -2,6 +2,7 @@ package com.naufalp2000.indonesia.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naufalp2000.indonesia.R
@@ -10,6 +11,7 @@ import com.naufalp2000.indonesia.model.province.Province
 import com.naufalp2000.indonesia.model.province.ProvinceServer
 import com.naufalp2000.indonesia.network.ConfigNetwork
 import kotlinx.android.synthetic.main.activity_batik.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_province.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +28,7 @@ class ProvinceActivity : AppCompatActivity() {
                 response: Response<ProvinceServer>
             ) {
                 if (response.isSuccessful){
+                    progress_province.visibility = View.GONE
                     val data = response.body()?.provinsi
                     showListProvince(data)
                 }

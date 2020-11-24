@@ -2,6 +2,7 @@ package com.naufalp2000.indonesia.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naufalp2000.indonesia.R
@@ -10,6 +11,7 @@ import com.naufalp2000.indonesia.model.museum.Museum
 import com.naufalp2000.indonesia.model.museum.MuseumServer
 import com.naufalp2000.indonesia.network.ConfigNetwork
 import kotlinx.android.synthetic.main.activity_batik.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_musium.*
 import kotlinx.android.synthetic.main.activity_province.*
 import retrofit2.Call
@@ -24,6 +26,7 @@ class MusiumActivity : AppCompatActivity() {
         ConfigNetwork.getMuseum().getDataMuseum().enqueue(object : Callback<MuseumServer>{
             override fun onResponse(call: Call<MuseumServer>, response: Response<MuseumServer>) {
                 if (response.isSuccessful){
+                    progress_museum.visibility = View.GONE
                     var data = response?.body()?.data
                     showListMuseum(data)
                 }
